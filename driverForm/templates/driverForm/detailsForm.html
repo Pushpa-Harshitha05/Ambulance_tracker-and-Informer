@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Form</title>
+</head>
+<body>
+  <form action="{% url 'driverForm:submit_patient_details' %}" method="POST">
+
+      {% csrf_token %}
+
+      <label for="text">Ambulance Number:</label>
+      <input type="text" id="text" name="number" placeholder="Enter ambulance number" autocomplete="on" required>
+
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" placeholder="Enter patient's name" autocomplete="off" required>
+        
+      <label for="distance">Distance (in km):</label>
+      <input type="text" id="distance" name="distance" placeholder="Enter distance to hospital" autocomplete="on" required>
+        
+      <label for="desp">Description of Issue:</label>
+      <textarea id="desp" name="desp" placeholder="Describe the patient's condition" rows="4" autocomplete="on" required></textarea>
+        
+      <input type="submit" value="Submit">
+  </form>
+</body>
+</html>

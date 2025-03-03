@@ -1,0 +1,51 @@
+.box {
+  height: 160px;
+  width: 370px;
+  display: flex; /* Flexbox for layout */
+  justify-content: flex-start; /* Align items to the start */
+  margin: 20px auto; /* Centers the div horizontally */
+  padding: 20px;
+  background-color: rgb(235, 235, 235); /* Light gray background */
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  border: 1px solid #ddd; /* Light border */
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 18px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Hover effect */
+.box:hover {
+  transform: scale(1.05); /* Slight zoom effect */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+}
+
+/* Responsive media query for smaller screens */
+@media (max-width: 768px) {
+  .box {
+    width: 95%;
+    padding: 15px;
+  }
+}
+
+.red {
+  box-sizing: border-box;
+  width: 10px; /* Width for color bar */
+  height: 160px; /* Match height of the box */
+  background-color: red; /* Color indication */
+  margin-right: 15px; /* Space between colour and details */
+}
+
+.green {
+  box-sizing: border-box;
+  width: 10px; /* Width for color bar */
+  height: 160px; /* Match height of the box */
+  background-color: green; /* Color indication */
+  margin-right: 15px; /* Space between colour and details */
+}
+
+.details {
+  box-sizing: border-box;
+  flex-grow: 1; /* Allow details to take available space */
+  text-align: start; /* Start-aligned text */
+}
