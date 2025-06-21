@@ -1,0 +1,54 @@
+body {
+  background-color: white;
+  color: black; /* Text color */
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  margin-top: 120px;
+}
+
+/* Style the form */
+form {
+  max-width: 550px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid black;
+  background-color: rgb(225, 225, 225);
+}
+
+/* Style the label */
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+/* Style the textarea */
+textarea {
+  width: 100%;
+  background-color: white; /* Off-white color */
+  color: black;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  resize: none;
+  box-sizing: border-box;
+  height: 150px;
+}
+
+/* Style the submit button to match textarea */
+input[type="submit"] {
+  width: 100%;
+  background-color: darkblue;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  margin-top: 10px;
+  cursor: pointer;
+  box-sizing: border-box; /* Ensures padding doesn’t affect width */
+  height: 40px; /* Matches typical textarea height */
+}
