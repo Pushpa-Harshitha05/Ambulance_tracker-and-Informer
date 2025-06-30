@@ -2,28 +2,41 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hospital Dashboard</title>
   <link rel="stylesheet" href="{% static 'dashboard/style.css' %}">
 </head>
+
 <body>
-  <a href="{% url 'driverForm:login' %}">Go to Patients Form</a>
+
+  <h4>{{ name }} Hospital</h4>
+
   {% for patient in patients_list %}
   <div class="box">
-    {% if patient.distance < 4.0 %}<div class="red"></div>{% else %}<div class="green"></div>{% endif %}
+    {% if patient.distance < 4.0 %}<div class="red">
+  </div>{% else %}<div class="green"></div>{% endif %}
 
-    <div class="details">
-      <p><b>Ambulance Number</b>: {{ patient.number }}</p>
-      <p><b>Name</b>: {{ patient.name }}</p>
-      <p><b>Description</b>: {{ patient.desp }}</p>
-      <p><b>Distance</b>: {{ patient.distance }}</p>
-    </div>
+  <div class="details">
+    <p><b>Description</b>: {{ patient.desp }}</p>
+    <p><b>Latitude</b>: {{ patient.latitude }}</p>
+    <p><b>Longitude</b>: {{ patient.longitude }}</p>
+    <b>Hospitals:</b>
+    <ul>
+      <li>
+        <p><b>Hospital Name:</b>{{ 'Kims' }}</p>
+        <p><b>Hospital Address:</b>{{ 'Sheelanagar' }}</p>
+      </li>
+    </ul>
+
+  </div>
   </div>
   {% empty %}
-     <p>No data to display</p>
+  <p>No data to display</p>
   {% endfor %}
   <script type="text/javascript" src="{% static 'dashboard/script.js' %}"></script>
 </body>
+
 </html>

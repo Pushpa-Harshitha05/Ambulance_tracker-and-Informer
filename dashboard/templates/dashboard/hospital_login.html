@@ -7,7 +7,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
-  <link rel="stylesheet" href="{% static 'driverForm/style.css' %}">
+  <link rel="stylesheet" href="{% static 'dashboard/login_styles.css' %}">
 </head>
 
 <body>
@@ -16,14 +16,14 @@
   <div id="login-register-container">
     <div class="login">
       <h2>Login</h2>
-      <form action="{% url 'driverForm:login' %}" method="POST">
+      <form action="{% url 'dashboard:h_login' %}" method="POST">
         {% csrf_token %}
 
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" placeholder="Enter Username" required>
+        <label for="hospital_id">Hospital ID:</label>
+        <input type="text" id="hospital_id" name="hospital_id" placeholder="Enter Hospital ID" required>
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" placeholder="Enter Password" required>
-        <input type="checkbox" name="checkbox" id="checkbox" onclick="togglepassword()">Show password
+        <p><input type="checkbox" name="checkbox" id="checkbox" onclick="togglepassword()">Show password</p>
         <button type="submit">Login</button>
       </form>
     </div>
@@ -34,12 +34,14 @@
 
     <div class="register">
       <h2>Register</h2>
-      <form action="{% url 'driverForm:register' %}" method="POST">
+      <form action="{% url 'dashboard:h_register' %}" method="POST">
         {% csrf_token %}
-        <label for="employee-id">Employee ID:</label>
-        <input type="text" id="employee-id" name="employee-id" placeholder="Enter Employee ID" required>
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" placeholder="Enter Username" required>
+        <label for="hospitalid">Hospital ID:</label>
+        <input type="text" id="hospitalid" name="hospitalid" placeholder="Enter Hospital ID" required>
+        <label for="hospitalname">Hospital Name:</label>
+        <input type="text" id="hospitalname" name="hospitalname" placeholder="Enter Hospital name" required>
+        <label for="ipaddr">IP Address:</label>
+        <input type="text" id="ipaddr" name="ipaddr" placeholder="Enter IP address" required>
         <label for="password-reg">Password:</label>
         <input type="password" id="password-reg" name="password-reg" placeholder="Enter Password" required>
         <label for="confirm-password">Confirm Password:</label>

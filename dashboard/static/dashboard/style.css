@@ -1,51 +1,59 @@
-.box {
-  height: 160px;
-  width: 370px;
-  display: flex; /* Flexbox for layout */
-  justify-content: flex-start; /* Align items to the start */
-  margin: 20px auto; /* Centers the div horizontally */
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
   padding: 20px;
-  background-color: rgb(235, 235, 235); /* Light gray background */
-  border-radius: 12px; /* Rounded corners */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow */
-  border: 1px solid #ddd; /* Light border */
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 18px;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  background-color: #f4f4f4;
 }
 
-/* Hover effect */
-.box:hover {
-  transform: scale(1.05); /* Slight zoom effect */
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+/* Link to Patients Form */
+a {
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-bottom: 20px;
 }
 
-/* Responsive media query for smaller screens */
-@media (max-width: 768px) {
-  .box {
-    width: 95%;
-    padding: 15px;
-  }
+a:hover {
+  background-color: #0056b3;
+}
+
+/* Box Container */
+.box {
+  display: flex;
+  align-items: center;
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Status Indicator */
+.red, .green {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  margin-right: 15px;
 }
 
 .red {
-  box-sizing: border-box;
-  width: 10px; /* Width for color bar */
-  height: 160px; /* Match height of the box */
-  background-color: red; /* Color indication */
-  margin-right: 15px; /* Space between colour and details */
+  background-color: red;
 }
 
 .green {
-  box-sizing: border-box;
-  width: 10px; /* Width for color bar */
-  height: 160px; /* Match height of the box */
-  background-color: green; /* Color indication */
-  margin-right: 15px; /* Space between colour and details */
+  background-color: green;
 }
 
+/* Patient Details */
 .details {
-  box-sizing: border-box;
-  flex-grow: 1; /* Allow details to take available space */
-  text-align: start; /* Start-aligned text */
+  flex-grow: 1;
+}
+
+.details p {
+  margin: 5px 0;
+  font-size: 16px;
 }

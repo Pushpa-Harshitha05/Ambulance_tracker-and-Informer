@@ -77,11 +77,27 @@ WSGI_APPLICATION = 'inform.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'DriverDetails',
+        'USER': 'root',
+        'PASSWORD': 'Harshitha@999',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    },
+    'hospital_db': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'HospitalDetails',
+        'USER': 'root',
+        'PASSWORD': 'Harshitha@999',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
+DATABASE_ROUTERS = [
+    'inform.dbrouters.DriverRouter',
+    'inform.dbrouters.HospitalRouter',
+]
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
