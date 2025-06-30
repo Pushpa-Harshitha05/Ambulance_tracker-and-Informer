@@ -6,7 +6,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
+  <title>DriverLogin</title>
   <link rel="stylesheet" href="{% static 'driverForm/style.css' %}">
 </head>
 
@@ -14,6 +14,9 @@
 
   <!-- Login and Register Section -->
   <div id="login-register-container">
+    {% if error %}
+    <p style="background-color: red; color: white;">{{ error }}</p>
+    {% endif %}
     <div class="login">
       <h2>Login</h2>
       <form action="{% url 'driverForm:login' %}" method="POST">

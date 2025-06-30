@@ -69,22 +69,20 @@ def register(request):
 
         # Check if passwords match
         if password != confirm_password:
-            return render(request, 'driverForm/register.html', {'error': 'Passwords do not match'})
+            return render(request, 'driverForm/login.html', {'error': 'Passwords do not match'})
 
         # Check if employee ID or username already exists
         if User.objects.filter(employee_id=employee_id).exists():
-            return render(request, 'register.html', {'error': 'Employee ID already exists'})
-        if User.objects.filter(username=username).exists():
-            return render(request, 'register.html', {'error': 'Username already exists'})
-
-        # Hash the password before saving
-        hashed_password = make_password(password)
-
+            return render(request, 'driverForm/login.html', {'error': 'Driver with this employee id already exists.'})
+        
         # Create and save the new employee
-        new_employee = User(employee_id=employee_id, username=username, password=hashed_password)
-        new_employee.save()
+        User.objects.create(
+            employee_id=employee_id,
+            username=username,
+            password=password
+        )
 
         # Redirect to the login page after successful registration
-        return redirect('driverForm:detailsForm.html')  # Redirect to login page (use the correct URL name here)
+        return render(request, 'driverForm/detailsForm.html')  # Redirect to login page (use the correct URL name here)
 
-    return render(request, 'register.html')
+    return render(request, 'login.html')
