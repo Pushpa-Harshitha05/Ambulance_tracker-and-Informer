@@ -14,18 +14,16 @@
   <h1>Emergency Care Connect</h1>
   <div class="container">
     <a href="{% url 'driverForm:login' %}">
-      <!-- Driver Log Section -->
       <div class="section left-side">
         <img
-          src="https://png.pngtree.com/png-clipart/20220628/original/pngtree-ambulance-icon-blue-logo-simple-png-image_8240493.png"
+          src="{% static 'dashboard/images/ambulance.png' %}"
           alt="Hospital Logo" class="hospital-logo">
         <button class="btn" onclick="window.location.href='driver-log.html'">Ambulance Driver Login</button>
       </div>
     </a>
     <a href="{% url 'dashboard:h_login' %}">
       <div class="section right-side">
-        <!-- Hospital Logo Image -->
-        <img src="http://pluspng.com/img-png/hospital-png-hd-images-hospital-clipart-icon-pluspng-1983.png"
+        <img src="{% static 'dashboard/images/hospital.png' %}"
           alt="Hospital Logo" class="hospital-logo">
         <button class="btn" onclick="window.location.href='hospital-details.html'">Hospital Login</button>
       </div>

@@ -1,58 +1,32 @@
-<!-- {% load static %}
-{% load custom_tags %}
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hospital Dashboard</title>
-  <link rel="stylesheet" href="{% static 'dashboard/style.css' %}">
-</head>
-
-<body>
-
-  {% for patient in patients_list %}
-    <h4>Emergency: {{ patient.desp|capfirst }}</h4>
-
-    <div class="details">
-      <p><b>Latitude:</b> {{ patient.latitude }}</p>
-      <p><b>Longitude:</b> {{ patient.longitude }}</p>
-      <p><b>Nearby Hospitals:</b></p>
-      <ul>
-        {% for hospital in patient.hospitals %}
-          <li>
-            <p><b>Name:</b> {{ hospital.tags.name }}</p>
-            <p><b>Address:</b> {{ hospital.tags|get_item:"addr:full" }}</p>
-            {% with hospital.tags|get_item:"phone" as phone %}
-              {% if phone != "N/A" %}
-                <p><b>Phone:</b>{{ phone }}</p>
-              {% else %}
-                <p><b>Phone:</b>{{ hospital.tags|get_item:"contact:phone" }}</p>
-              {% endif %}
-            {% endwith %}
-          </li>
-          <br><br>
-        {% endfor %}
-      </ul>
-    </div>
-  {% empty %}
-    <p>No data to display</p>
-  {% endfor %}
-  <script type="text/javascript" src="{% static 'dashboard/script.js' %}"></script>
-</body>
-
-</html> -->
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
 </head>
 <body>
-  still pending
+
+  <h2> Real-time Alerts</h2>
+  <div id="emergency-alert" style="color: red; font-weight: bold;"></div>
+
+  <script>
+    const hospitalId = "{{ hospitalId }}";
+    if (hospitalId) {
+      const socket = new WebSocket(`ws://${window.location.hostname}:8000/ws/notify/${hospitalId}/`);
+
+      socket.onmessage = function(event) {
+        const data = JSON.parse(event.data);
+        alert("Emergency Alert: " + data.message);
+        document.getElementById('emergency-alert').innerText = data.message;
+      };
+
+      socket.onerror = function(e) {
+        console.error("WebSocket error:", e);
+      };
+    } else {
+      console.warn("Hospital ID is not set. WebSocket not initialized.");
+    }
+  </script>
+
 </body>
 </html>

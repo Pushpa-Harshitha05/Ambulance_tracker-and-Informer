@@ -11,11 +11,14 @@
 </head>
 
 <body>
+  <p class="instruction" align="center">
+    Please fill in the patient's condition and the emergency. Location will be auto-detected.
+  </p>
   <form action="{% url 'driverForm:submit_patient_details' %}" method="POST">
 
     {% csrf_token %}
 
-    <label for="desp">Description of Issue:</label>
+    <label for="desp">Description of Patient Issue:</label>
     <textarea id="desp" name="desp" placeholder="Describe the patient's condition" rows="4" autocomplete="on"
       required></textarea>
 

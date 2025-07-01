@@ -20,11 +20,12 @@ class NotificationConsumer(AsyncWebsocketConsumer):
         )
     
     async def receive(self, text_data=None):
+        data = json.loads(text_data)
         await self.channel_layer.group_send(
             self.room_group_name,
             {
                 'type': 'send_notification',
-                'message': f"Ambulance incoming for {text_data['emergency']} at location ({text_data['latitude']}, {text_data['longitude']})"
+                'message': f"Ambulance incoming for {data['emergency']} at location ({data['latitude']}, {data['longitude']})"
             }
         )
     

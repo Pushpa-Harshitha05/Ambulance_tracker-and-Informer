@@ -10,4 +10,4 @@ class Hospital(models.Model):
   longitude = models.FloatField()
 
   def __str__(self):
-        return self.ip_addr
+        return self.ip_address

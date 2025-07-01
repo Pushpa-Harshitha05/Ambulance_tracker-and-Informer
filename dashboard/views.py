@@ -1,6 +1,4 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.contrib.auth.hashers import check_password, make_password
+from django.shortcuts import render,redirect
 from .models import Hospital
 
 patients_list = []
@@ -9,31 +7,12 @@ def homepage(request):
     return render(request, "dashboard/display_homepage.html")
 
 def display(request):
-    pass
-    # desp = request.session.get('desp')
-    # latitude = request.session.get('latitude')
-    # longitude = request.session.get('longitude')
-    # hospitals = request.session.get('hospitals')
+    hsp_id = request.session.get('hsp_id')
 
-    # if desp and latitude and longitude:
-    #     try:
-    #         latitude = float(latitude)
-    #         longitude = float(longitude)
-
-    #         context = {
-    #             'desp': desp,
-    #             'latitude': latitude,
-    #             'longitude': longitude,
-    #             'hospitals' : hospitals
-    #         }
-
-    #         if context not in patients_list:
-    #             patients_list.append(context)
-
-    #     except ValueError:
-    #         return HttpResponse("Invalid latitude or longitude format.", status=400)
-
-    # return render(request, "dashboard/hospital.html", {'patients_list': patients_list})
+    if hsp_id is not None:
+        return render(request, 'dashboard/hospital.html', {'hospitalId': hsp_id})
+    
+    return render(request, 'dashboard/hospital_login.html')
 
 
 def h_login(request):
@@ -47,7 +26,8 @@ def h_login(request):
             if hospital.password != password:
                 return render(request, "dashboard/hospital_login.html", {"error": "Wrong Password"})
             else:
-                return render(request, "dashboard/hospital.html")
+                request.session['hsp_id'] = hospital_id
+                return redirect("dashboard:display")
 
         return render(request, "dashboard/hospital_login.html", {"error": "Invalid credentials"})
 

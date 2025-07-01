@@ -4,63 +4,57 @@
   box-sizing: border-box;
 }
 
-/* General page styling */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(135deg, white, white);
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  margin: 0;
-  display: flex;
+  padding: 20px;
   flex-direction: column;
 }
 
-h1{
-  margin-bottom: 26px;
-  font-size: 42px;
+h1 {
+  margin-bottom: 60px;
+  font-size: 48px;
+  text-align: center;
 }
 
-a{
-  height: 450px;
-  width: 47%;
+a {
+  width: 100%;
+  max-width: 100%;
   text-decoration: none;
 }
 
-/* Container for both sections */
 .container {
   display: flex;
   justify-content: space-between;
-  width: 90%;
+  width: 100%;
   max-width: 1200px;
-  height: 500px;
+  height: auto;
   background-color: #2a2aa4;
   border-radius: 15px;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
   gap: 40px;
   padding: 50px;
-  padding-top: 80px;
 }
 
-/* Styling for each section */
 .section {
-  flex: 1;
+  flex: 1 1 45%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   border-radius: 15px;
   padding: 20px;
-  box-sizing: border-box;
   background-color: #fff;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
   text-align: center;
 }
 
-/* Left side for Driver Log */
 .left-side {
-  background: linear-gradient(145deg, white, white);  /* Light gradient background */
+  background: linear-gradient(145deg, white, white);
   border: 1px solid white;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
@@ -68,28 +62,26 @@ a{
 .left-side h2 {
   font-size: 30px;
   font-weight: 600;
-  color: #000; /* Black color for the header */
+  color: #000;
   margin-bottom: 15px;
 }
 
 .left-side p {
   font-size: 18px;
   margin-bottom: 25px;
-  color: #000; /* Black color for the paragraph */
+  color: #000;
 }
 
-/* Reducing image size for the left-side section */
 .left-side img {
-  width: 45%;
-  height: 150px;
-  height: auto;
+  width: 100%;
+  max-width: 200px;
   margin-bottom: 20px;
 }
 
 .left-side .btn,
 .right-side .btn {
   padding: 14px 30px;
-  font-size: 21px;
+  font-size: 23px;
   font-weight: bolder;
   border: none;
   border-radius: 8px;
@@ -103,15 +95,18 @@ a{
 .left-side .btn {
   background-color: #5aabcd;
   color: white;
+  width: 60%;
 }
 
 .left-side .btn:hover {
-  transform: translateY(3px);
+  background-color: #6fb0cc;
+  transform: translateY(-3px);
 }
 
 .right-side .btn {
-  background-color: #7de8b9;
+  background-color: #3ddc97;
   color: white;
+  width: 60%;
 }
 
 .right-side .btn:hover {
@@ -119,22 +114,14 @@ a{
   transform: translateY(-3px);
 }
 
-/* Right side for Hospital Logo */
 .right-side {
-  background: linear-gradient(145deg, white, white);  /* Soft gradient background */
+  background: linear-gradient(145deg, white, white);
   border: 1px solid white;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
-.right-side img {
-  width: 45%;
-  height: 150px;
-  height: auto;
-  margin-bottom: 20px;
-}
-
 .right-side .hospital-logo {
-  max-width: 50%;  /* Reduced size of the logo for a better fit */
+  max-width: 100%;
   height: auto;
   margin-bottom: 20px;
   transition: transform 0.3s ease;
@@ -143,41 +130,57 @@ a{
 .right-side h2 {
   font-size: 30px;
   font-weight: 600;
-  color: #000; /* Black color for the header */
+  color: #000;
   margin-bottom: 15px;
 }
 
 .right-side p {
   font-size: 18px;
   margin-bottom: 25px;
-  color: #000; /* Black color for the paragraph */
+  color: #000;
 }
 
 .right-side .hospital-logo:hover {
   transform: scale(1.05);
 }
 
-/* Hover effect to give interactivity */
 .section:hover {
   transform: scale(1.05);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
-/* Media Query for responsiveness */
+.left-side img,
+.right-side img,
+.right-side .hospital-logo {
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 20px;
+}
+
 @media screen and (max-width: 768px) {
   .container {
-      flex-direction: column;  /* Stack sections vertically on small screens */
-      height: auto;  /* Let the height adjust to the content */
-      gap: 20px;
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px;
+  }
+
+  .section {
+    width: 100%;
   }
 
   .left-side img,
   .right-side img {
-      max-width: 80%;  /* Make images larger on smaller screens */
+    max-width: 80%;
   }
 
   .btn {
-      font-size: 16px;  /* Smaller button text on smaller screens */
-      padding: 12px 24px;
+    font-size: 16px;
+    padding: 12px 24px;
+  }
+
+  h1 {
+    font-size: 32px;
   }
 }

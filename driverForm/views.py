@@ -1,15 +1,38 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 from django.contrib.auth.hashers import check_password,make_password
 from .models import User
 from dashboard.models import Hospital
 import requests
 from math import radians, sin, cos, sqrt, atan2
+import json
 
 hospitals_list = []
 
 def form(request):
   return render(request,'driverForm/detailsForm.html')
+
+
+def receive_ip(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            ip_addr = data.get('ip')
+
+            hospital = Hospital.objects.get(ip_address=ip_addr)
+
+            return JsonResponse({
+                'hospital_id': hospital.hospital_id,
+                'ip_addr': hospital.ip_address
+            })
+
+        except Hospital.DoesNotExist:
+            return JsonResponse({'error': 'No hospital found with this IP'}, status=404)
+
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=500)
+
+    return JsonResponse({'error': 'Invalid request method'}, status=405)
 
 
 def haversine(lat1, lon1, lat2, lon2):
