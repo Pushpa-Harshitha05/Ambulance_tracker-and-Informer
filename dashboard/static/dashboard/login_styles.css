@@ -11,26 +11,49 @@ body {
 
 #login-register-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  width: 80%;
-  max-width: 1000px;
   background: rgb(173, 233, 173);
   border-radius: 10px;
-  overflow: hidden; 
-  gap: 100px;
+  column-gap: 50px;
+  padding: 20px;
+  flex-direction: column;
+}
+
+.error-container {
+  width: 25%;
+  margin-right: 10px;
+  height: 20px;
+}
+
+#errormsg {
+  display: inline-block;
+  background-color: red;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.forms{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 160px;
 }
 
 .login, .register {
-  width: 50%;
-  padding: 30px;
+  width: 350px;
+  padding: 20px;
   box-sizing: border-box; 
   background: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
 }
 
 .register{
-  width: 56%;
+  width: 400px;
 }
 
 .login {
@@ -49,8 +72,8 @@ form {
 }
 
 label {
-  margin-bottom: 5px;
-  font-size: 14px;
+  margin-bottom: 3px;
+  font-size: 15px;
   color: #555;
 }
 
@@ -60,13 +83,28 @@ input[type="text"], input[type="password"] {
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 14px;
-  width: 100%;
+  width: 93%;
 }
 
 input[type="checkbox"] {
   margin-bottom: 15px;
   display: inline;
   width: 8%;
+}
+
+input::placeholder{
+  font-size: 14px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: rgb(156, 156, 156);
+}
+
+.register input{
+  height: 9px;
+  margin-bottom: 16px;
+}
+
+.register form input[name='longitude']{
+  margin-bottom: 16px;
 }
 
 p{

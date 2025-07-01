@@ -6,5 +6,4 @@ function togglepassword(){
   else{
     chk.type = "password";
   }
-  console.log("hello")
 }

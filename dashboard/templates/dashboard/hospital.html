@@ -1,4 +1,5 @@
 {% load static %}
+{% load custom_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,29 +13,32 @@
 
 <body>
 
-  <h4>{{ name }} Hospital</h4>
-
   {% for patient in patients_list %}
-  <div class="box">
-    {% if patient.distance < 4.0 %}<div class="red">
-  </div>{% else %}<div class="green"></div>{% endif %}
+    <h4>Emergency: {{ patient.desp|capfirst }}</h4>
 
-  <div class="details">
-    <p><b>Description</b>: {{ patient.desp }}</p>
-    <p><b>Latitude</b>: {{ patient.latitude }}</p>
-    <p><b>Longitude</b>: {{ patient.longitude }}</p>
-    <b>Hospitals:</b>
-    <ul>
-      <li>
-        <p><b>Hospital Name:</b>{{ 'Kims' }}</p>
-        <p><b>Hospital Address:</b>{{ 'Sheelanagar' }}</p>
-      </li>
-    </ul>
-
-  </div>
-  </div>
+    <div class="details">
+      <p><b>Latitude:</b> {{ patient.latitude }}</p>
+      <p><b>Longitude:</b> {{ patient.longitude }}</p>
+      <p><b>Nearby Hospitals:</b></p>
+      <ul>
+        {% for hospital in patient.hospitals %}
+          <li>
+            <p><b>Name:</b> {{ hospital.tags.name }}</p>
+            <p><b>Address:</b> {{ hospital.tags|get_item:"addr:full" }}</p>
+            {% with hospital.tags|get_item:"phone" as phone %}
+              {% if phone != "N/A" %}
+                <p><b>Phone:</b>{{ phone }}</p>
+              {% else %}
+                <p><b>Phone:</b>{{ hospital.tags|get_item:"contact:phone" }}</p>
+              {% endif %}
+            {% endwith %}
+          </li>
+          <br><br>
+        {% endfor %}
+      </ul>
+    </div>
   {% empty %}
-  <p>No data to display</p>
+    <p>No data to display</p>
   {% endfor %}
   <script type="text/javascript" src="{% static 'dashboard/script.js' %}"></script>
 </body>

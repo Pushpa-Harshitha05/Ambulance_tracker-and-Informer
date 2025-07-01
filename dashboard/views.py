@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.hashers import check_password, make_password
 from .models import Hospital
@@ -9,10 +9,10 @@ def homepage(request):
     return render(request, "dashboard/display_homepage.html")
 
 def display(request):
-    desp = request.GET.get('desp')
-    latitude = request.GET.get('latitude')
-    longitude = request.GET.get('longitude')
-    hospitals = request.GET.get('hospitals')
+    desp = request.session.get('desp')
+    latitude = request.session.get('latitude')
+    longitude = request.session.get('longitude')
+    hospitals = request.session.get('hospitals')
 
     if desp and latitude and longitude:
         try:
@@ -56,6 +56,8 @@ def h_register(request):
         hospitalid = request.POST.get('hospitalid')
         password = request.POST.get('password-reg')
         confirm_password = request.POST.get('confirm-password')
+        latitude = request.POST.get('latitude')
+        longitude = request.POST.get('longitude')
 
         if password != confirm_password:
             return render(request, 'dashboard/hospital_login.html', {'error': 'Passwords do not match'})
@@ -63,11 +65,15 @@ def h_register(request):
         if Hospital.objects.filter(hospital_id=hospitalid).exists():
             return render(request, 'dashboard/hospital_login.html', {'error': 'Hospital ID already exists'})
 
-        hashed_password = make_password(password)
+        Hospital.objects.create(
+            hospital_name = hospitalname,
+            hospital_id = hospitalid,
+            ip_address = ipaddr,
+            password = password,
+            latitude = latitude,
+            longitude = longitude
+        )
 
-        new_hospital = Hospital(hospital_name=hospitalname, hospital_id=hospitalid, ip_addr=ipaddr, password=hashed_password)
-        new_hospital.save()
-
-        return render(request, 'dashboard/hospital.html', {'name' : hospitalname})  # Redirect to dashboard after successful registration
+        return render(request, 'dashboard/success.html', {'name' : hospitalname})  # Redirect to dashboard after successful registration
 
     return render(request, 'dashboard/hospital_login.html')

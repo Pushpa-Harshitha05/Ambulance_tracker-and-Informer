@@ -6,7 +6,6 @@ body {
   margin-top: 120px;
 }
 
-/* Style the form */
 form {
   max-width: 550px;
   margin: 0 auto;
@@ -17,17 +16,15 @@ form {
   background-color: rgb(225, 225, 225);
 }
 
-/* Style the label */
 label {
   display: block;
   margin-bottom: 8px;
   font-weight: bold;
 }
 
-/* Style the textarea */
 textarea {
   width: 100%;
-  background-color: white; /* Off-white color */
+  background-color: white;
   color: black;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -38,7 +35,6 @@ textarea {
   height: 150px;
 }
 
-/* Style the submit button to match textarea */
 input[type="submit"] {
   width: 100%;
   background-color: darkblue;
@@ -49,6 +45,6 @@ input[type="submit"] {
   font-size: 16px;
   margin-top: 10px;
   cursor: pointer;
-  box-sizing: border-box; /* Ensures padding doesn’t affect width */
-  height: 40px; /* Matches typical textarea height */
+  box-sizing: border-box;
+  height: 40px;
 }

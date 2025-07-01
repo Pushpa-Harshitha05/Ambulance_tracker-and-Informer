@@ -12,20 +12,23 @@
 
 <body>
 
-  <!-- Login and Register Section -->
   <div id="login-register-container">
     {% if error %}
-    <p style="background-color: red; color: white;">{{ error }}</p>
+      <div class="error-container">
+        <p id="errormsg">{{ error }}</p>
+      </div>
     {% endif %}
-    <div class="login">
+
+    <div class="forms">
+      <div class="login">
       <h2>Login</h2>
       <form action="{% url 'driverForm:login' %}" method="POST">
         {% csrf_token %}
 
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" placeholder="Enter Username" required>
+        <label for="emp_id">Employee ID:</label>
+        <input type="text" id="emp_id" name="emp_id" placeholder="Enter Employee id" required oninput="Hide()">
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" placeholder="Enter Password" required>
+        <input type="password" id="password" name="password" placeholder="Enter Password" required oninput="Hide()">
         <input type="checkbox" name="checkbox" id="checkbox" onclick="togglepassword()">Show password
         <button type="submit">Login</button>
       </form>
@@ -40,19 +43,36 @@
       <form action="{% url 'driverForm:register' %}" method="POST">
         {% csrf_token %}
         <label for="employee-id">Employee ID:</label>
-        <input type="text" id="employee-id" name="employee-id" placeholder="Enter Employee ID" required>
+        <input type="text" id="employee-id" name="employee-id" placeholder="Enter Employee ID" required oninput="Hide()">
         <label for="username">Username:</label>
-        <input type="text" id="username" name="username" placeholder="Enter Username" required>
+        <input type="text" id="username" name="username" placeholder="Enter Username" required oninput="Hide()">
         <label for="password-reg">Password:</label>
-        <input type="password" id="password-reg" name="password-reg" placeholder="Enter Password" required>
+        <input type="password" id="password-reg" name="password-reg" placeholder="Enter Password" required oninput="Hide()">
         <label for="confirm-password">Confirm Password:</label>
-        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
+        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required oninput="Hide()">
         <button type="submit">Register</button>
       </form>
     </div>
+    </div>
   </div>
 
-  <script type="text/javascript" src="{% static 'driverForm/loginscript.js' %}"></script>
+  <script>
+    function Hide(){
+      const errormsg = document.getElementById('errormsg');
+      if (errormsg) {
+          errormsg.style.display = 'none';
+      }
+    }
+    function togglepassword(){
+      var chk = document.getElementById("password");
+      if(chk.type === "password"){
+        chk.type = "text";
+      }
+      else{
+        chk.type = "password";
+      }
+    }
+  </script>
 
 </body>
 

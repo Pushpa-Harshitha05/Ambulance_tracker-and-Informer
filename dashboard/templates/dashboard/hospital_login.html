@@ -12,17 +12,24 @@
 
 <body>
 
-  <!-- Login and Register Section -->
   <div id="login-register-container">
-    <div class="login">
+
+    {% if error %}
+      <div class="error-container">
+        <p id="errormsg">{{ error }}</p>
+      </div>
+    {% endif %}
+
+    <div class="forms">
+      <div class="login">
       <h2>Login</h2>
       <form action="{% url 'dashboard:h_login' %}" method="POST">
         {% csrf_token %}
 
         <label for="hospital_id">Hospital ID:</label>
-        <input type="text" id="hospital_id" name="hospital_id" placeholder="Enter Hospital ID" required>
+        <input type="text" id="hospital_id" name="hospital_id" placeholder="Enter Hospital ID" oninput="Hide()" required>
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" placeholder="Enter Password" required>
+        <input type="password" id="password" name="password" placeholder="Enter Password" oninput="Hide()" required>
         <p><input type="checkbox" name="checkbox" id="checkbox" onclick="togglepassword()">Show password</p>
         <button type="submit">Login</button>
       </form>
@@ -37,21 +44,55 @@
       <form action="{% url 'dashboard:h_register' %}" method="POST">
         {% csrf_token %}
         <label for="hospitalid">Hospital ID:</label>
-        <input type="text" id="hospitalid" name="hospitalid" placeholder="Enter Hospital ID" required>
+        <input type="text" id="hospitalid" name="hospitalid" placeholder="Enter Hospital ID" oninput="Hide()" required>
         <label for="hospitalname">Hospital Name:</label>
-        <input type="text" id="hospitalname" name="hospitalname" placeholder="Enter Hospital name" required>
-        <label for="ipaddr">IP Address:</label>
-        <input type="text" id="ipaddr" name="ipaddr" placeholder="Enter IP address" required>
+        <input type="text" id="hospitalname" name="hospitalname" placeholder="Enter Hospital name" oninput="Hide()" required>
+        <label for="ipaddr">Public IP Address:</label>
+        <input type="text" id="ipaddr" name="ipaddr" placeholder="Enter IP address" oninput="Hide()" required>
         <label for="password-reg">Password:</label>
-        <input type="password" id="password-reg" name="password-reg" placeholder="Enter Password" required>
+        <input type="password" id="password-reg" name="password-reg" placeholder="Enter Password" oninput="Hide()" required>
         <label for="confirm-password">Confirm Password:</label>
-        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
+        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" oninput="Hide()" required>
+        <label for="latitude">Hospital Latitude:</label>
+        <input type="text" id="latitude" name="latitude" placeholder="Enter Hospital Latitude" oninput="Hide()" required>
+        <label for="longitude">Hospital Latitude:</label>
+        <input type="text" id="longitude" name="longitude" placeholder="Enter Hospital longitude" oninput="Hide()" required>
         <button type="submit">Register</button>
       </form>
     </div>
+    </div>
   </div>
 
-  <script type="text/javascript" src="{% static 'driverForm/loginscript.js' %}"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(function (position) {
+          document.getElementById('latitude').value = position.coords.latitude;
+          document.getElementById('longitude').value = position.coords.longitude;
+        }, function(error){
+          console.error("Error getting location:", error);
+        })
+      }
+      else{
+        alert("Geolocation not supported in this Browser. Enter Manually or try again.");
+      }
+    })
+    function Hide(){
+      const errormsg = document.getElementById('errormsg');
+      if (errormsg) {
+          errormsg.style.display = 'none';
+      }
+    }
+    function togglepassword(){
+      var chk = document.getElementById("password");
+      if(chk.type === "password"){
+        chk.type = "text";
+      }
+      else{
+        chk.type = "password";
+      }
+    }
+  </script>
 
 </body>
 
