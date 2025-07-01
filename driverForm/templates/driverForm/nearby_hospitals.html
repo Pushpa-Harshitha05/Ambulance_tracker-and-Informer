@@ -1,4 +1,4 @@
-<!-- {% load static %}
+{% load static %}
 {% load custom_tags %}
 
 <!DOCTYPE html>
@@ -13,13 +13,31 @@
 
 <body>
 
-  {% for patient in patients_list %}
+  {% for patient in hospitals_list %}
+    
     <h4>Emergency: {{ patient.desp|capfirst }}</h4>
-
     <div class="details">
       <p><b>Latitude:</b> {{ patient.latitude }}</p>
       <p><b>Longitude:</b> {{ patient.longitude }}</p>
-      <p><b>Nearby Hospitals:</b></p>
+
+      <h3><b>Registered Hospitals Nearby (≤ 3 km)</b></h3>
+      <ul>
+        {% for hospital in patient.registered_hospitals %}
+          <li>
+            <p><b>Name:</b> {{ hospital.name }}</p>
+            <p><b>IP Address:</b> {{ hospital.ip_addr }}</p>
+            <p><b>Latitude:</b> {{ hospital.latitude }}</p>
+            <p><b>Longitude:</b> {{ hospital.longitude }}</p>
+            <p><b>Distance:</b> {{ hospital.distance|floatformat:2 }} km</p>
+          </li>
+        {% empty %}
+          <p>No registered hospitals nearby.</p>
+        {% endfor %}
+      </ul>
+
+      <br>
+
+      <h3><b>Nearby (Unregistered) Hospitals</b></h3>
       <ul>
         {% for hospital in patient.hospitals %}
           <li>
@@ -27,32 +45,23 @@
             <p><b>Address:</b> {{ hospital.tags|get_item:"addr:full" }}</p>
             {% with hospital.tags|get_item:"phone" as phone %}
               {% if phone != "N/A" %}
-                <p><b>Phone:</b>{{ phone }}</p>
+                <p><b>Phone:</b> {{ phone }}</p>
               {% else %}
-                <p><b>Phone:</b>{{ hospital.tags|get_item:"contact:phone" }}</p>
+                <p><b>Phone:</b> {{ hospital.tags|get_item:"contact:phone" }}</p>
               {% endif %}
             {% endwith %}
+            <p><b>Distance:</b> {{ hospital.distance|floatformat:2 }} km</p>
           </li>
-          <br><br>
+        {% empty %}
+          <p>No nearby hospitals found.</p>
         {% endfor %}
       </ul>
     </div>
+    <hr><br>
   {% empty %}
-    <p>No data to display</p>
+    <p>No patient data to display.</p>
   {% endfor %}
   <script type="text/javascript" src="{% static 'dashboard/script.js' %}"></script>
 </body>
 
-</html> -->
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  still pending
-</body>
 </html>
