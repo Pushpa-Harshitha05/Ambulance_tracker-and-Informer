@@ -1,0 +1,126 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  background-color: rgb(173, 233, 173);
+}
+
+#login-register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  gap: 50px;
+  padding: 20px;
+  flex-direction: column;
+}
+
+.error-container {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#errormsg {
+  display: inline-block;
+  background-color: red;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.forms{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.login, .register {
+  width: 350px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.login{
+  height: min-content;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.5em;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 1em;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+#checkbox {
+  margin-top: -10px;
+  margin-bottom: 15px;
+}
+
+#login-register-container .login {
+  background-color: #fff;
+}
+
+#login-register-container .register {
+  background-color: #fff;
+}
+
+input[type="password"]:focus, input[type="text"]:focus {
+  outline-color: #4CAF50;
+}
+
+.space{
+  margin: 0px 120px;
+  font-size: 30px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+@media (max-width: 768px) {
+  #login-register-container {
+      flex-direction: column;
+      gap: 20px;
+  }
+}

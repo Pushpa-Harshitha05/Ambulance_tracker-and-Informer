@@ -1,18 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     const ipElements = document.querySelectorAll('.ip_addr');
-    const emergency = document.querySelectorAll('.desp');
-    const lat = document.querySelectorAll('.lat');
-    const long = document.querySelectorAll('.long')
-
-    if (ipElements.length === 0 || emergency.length === 0 || lat.length === 0 || long.length === 0) {
+    if (ipElements.length === 0) {
         console.warn('No hospital elements found with class .ip_addr');
         return;
     }
 
     const ip_addr = ipElements[0].dataset.ip;
-    const emer = emergency[0].dataset.desp;
-    const lati = lat[0].dataset.lat;
-    const longi = long[0].dataset.long;
     const csrftoken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
     fetch('/driverForm/receive_ip/', {
@@ -37,9 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
         socket.onopen = function(){
             console.log('WebSocket connection opened. Sending emergency info...');
             socket.send(JSON.stringify({
-                emergency: emer,
-                latitude: lati,
-                longitude: longi
+                emergency: "Heart Attack",
+                latitude: "17.385044",
+                longitude: "78.486671"
             }));
         };
 

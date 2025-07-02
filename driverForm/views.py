@@ -112,7 +112,7 @@ def submit_patient_details(request):
             for hosp in Hospital.objects.all():
                 dist = haversine(float(latitude),float(longitude),hosp.latitude,hosp.longitude)
                 print(dist)
-                if(dist <= 3):
+                if(dist <= 10):
                     registered.append({
                         "name": hosp.hospital_name,
                         "latitude": hosp.latitude,
